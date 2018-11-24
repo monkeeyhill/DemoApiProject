@@ -1,3 +1,5 @@
 /.vs/**
 /Demo/bin/**/*
 /Demo/obj/**/*
+/DemoWithView/bin/**/*
+/DemoWithView/obj/**/*
