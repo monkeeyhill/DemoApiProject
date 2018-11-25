@@ -53,8 +53,46 @@ namespace Demo.Controllers
             {
                 md = new TodoModel();
                 md.Id = Convert.ToInt32(reader.GetValue(0));
-                md.Name = reader.GetValue(1).ToString();
-                md.Description = reader.GetValue(2).ToString();
+                md.Name = reader.GetValue(2).ToString();
+                md.Description = reader.GetValue(1).ToString();
+                if (!string.IsNullOrEmpty(reader.GetValue(5).ToString()))
+                {
+                    md.Ordering = Convert.ToInt32(reader.GetValue(5));
+                }
+
+                listModel.Add(md);
+            }
+            response.Data = listModel;
+            response.Result = true;
+            response.Message = "get data success";
+            response.TotalRecord = listModel.Count;
+            return response;
+        }
+
+        public BaseListResponse<TodoModel> Get(string search)
+        {
+            var response = new BaseListResponse<TodoModel>();
+            //response = _iTodoBusinesslogic.GetAll();
+            //return response;
+
+            string connectString = ConfigurationManager.ConnectionStrings[connectstring].ConnectionString;
+            SqlDataReader reader = null;
+            SqlConnection myConnection = new SqlConnection();
+            myConnection.ConnectionString = connectString;
+            SqlCommand sqlCmd = new SqlCommand();
+            sqlCmd.CommandType = CommandType.Text;
+            sqlCmd.CommandText = "Select * from Todo where DeleteDate IS NULL AND Name LIKE '%" + search + "%'";
+            sqlCmd.Connection = myConnection;
+            myConnection.Open();
+            reader = sqlCmd.ExecuteReader();
+            TodoModel md = null;
+            var listModel = new List<TodoModel>();
+            while (reader.Read())
+            {
+                md = new TodoModel();
+                md.Id = Convert.ToInt32(reader.GetValue(0));
+                md.Name = reader.GetValue(2).ToString();
+                md.Description = reader.GetValue(1).ToString();
                 if (!string.IsNullOrEmpty(reader.GetValue(5).ToString()))
                 {
                     md.Ordering = Convert.ToInt32(reader.GetValue(5));
@@ -90,8 +128,8 @@ namespace Demo.Controllers
             {
                 md = new TodoModel();
                 md.Id = Convert.ToInt32(reader.GetValue(0));
-                md.Name = reader.GetValue(1).ToString();
-                md.Description = reader.GetValue(2).ToString();
+                md.Name = reader.GetValue(2).ToString();
+                md.Description = reader.GetValue(1).ToString();
                 if (!string.IsNullOrEmpty(reader.GetValue(5).ToString()))
                 {
                     md.Ordering = Convert.ToInt32(reader.GetValue(5));

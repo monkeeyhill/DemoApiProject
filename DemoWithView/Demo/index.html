@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>PMS template</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+  <script src="js/index.js"></script>
+</head>
+<body>
+  <div class='container'>
+    <h1>List todos</h1>
+    <button class='btn btn-primary btn-add'>Add todo</button>
+    <table class='table-data list-todos' cellspacing='0'>
+      <thead>
+        <tr>
+          <th class='column-id'>#</th>
+          <th class='column-name'>Name</th>
+          <th>Description</th>
+          <th class='column-order'>Order</th>
+          <th class='column-action'>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <div class='modal hidden'>
+      <div class='modal-content'>
+        <div class='modal-title'>
+          <h3>Add new</h3>
+          <button class='btn-close'>x</button>
+        </div>
+        <div class='form-wrapper'>
+          <form id='form-add-new'>
+            <div class='input-group'>
+              <label for='name'>Name</label>
+              <input type="text" id="name" name="name" placeholder="Name" class='textbox'>
+            </div>
+            <div class='input-group'>
+              <label for='description'>Description</label>
+              <textarea id="description" name="description" placeholder="Description" class='textbox'></textarea>
+            </div>
+            <div class='input-group'>
+              <label for='order'>Order</label>
+              <input type="text" id="order" name="order" placeholder="Order" class='textbox'>
+            </div>
+            <input type="button" value="Save" class='btn btn-primary btn-save'>
+            <input type="hidden" name="id"/>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class='notification'>
+      <p class='notification-message'>Message</p>
+    </div>
+  </div>
+</body>
+</html>
